@@ -1,14 +1,14 @@
 const fs = require('fs');
 const csv = require('csvtojson');
-const createJson = require("./src/server/createJsonFile.js")
+const createJson = require("./server/createJsonFile.js")
 
-const matchesPerYear = require('./src/server/1-matches-per-year.js');
-const matchesWonPerYear = require('./src/server/2-matches-won-per-team-per-year.js');
-
-
+const matchesPerYear = require('./server/1-matches-per-year.js');
+const matchesWonPerYear = require('./server/2-matches-won-per-team-per-year.js');
 
 
-const readCsvFile = (callback,fileName) => {
+
+
+const resolveQuery = (callback,fileName) => {
     csv()
         .fromFile("./src/data/matches.csv")
         .then((resultMatch) => {
@@ -24,9 +24,9 @@ const readCsvFile = (callback,fileName) => {
 
 //Q1=>
 
-readCsvFile(matchesPerYear,"1-matchesPerYear.json");
+resolveQuery(matchesPerYear,"1-matchesPerYear.json");
 
 //Q2=>
 
-readCsvFile(matchesWonPerYear,"2-matchesWonPerTeamPerYear.json")
+resolveQuery(matchesWonPerYear,"2-matchesWonPerTeamPerYear.json")
 
