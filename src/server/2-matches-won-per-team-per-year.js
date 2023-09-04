@@ -1,28 +1,22 @@
 const fs = require('fs');
 
-function matchesWonPerTeamPerYear(matches) {
+function matchesWonPerTeamPerYear(matches,deliveries) {
     const result = {}
-    for (let game of matches) {
-        if (result[game.season] && result[game.season][game.winner]) {
-            result[game.season][game.winner] = result[game.season][game.winner] + 1;
+    for (let match of matches) {
+        if (result[match.season] && result[match.season][match.winner]) {
+            result[match.season][match.winner] = result[match.season][match.winner] + 1;
         } else {
-            if (result[game.season]) {
-                result[game.season][game.winner] = 1;
+            if (result[match.season]) {
+                result[match.season][match.winner] = 1;
             }
             else {
-                result[game.season] = {};
+                result[match.season] = {};
             }
 
 
         }
     }
-    const data = JSON.stringify(result);
-    fs.writeFile("./src/public/output/matchesWonPerTeamPerYear.json", data, (error) => {
-        if (error) {
-            console.error(error);
-            throw error;
-        }
-    });
+    return result;
 }
 
 module.exports = matchesWonPerTeamPerYear;
