@@ -29,14 +29,4 @@ readCsvFile(matchesPerYear,"1-matchesPerYear.json");
 //Q2=>
 
 readCsvFile(matchesWonPerYear,"2-matchesWonPerTeamPerYear.json")
-const sample=[
-    {season:2008,winner:'chk'},
-    {season:2017,winner:'rbc'},
-    {season:2015,winner:'mi'},
-    {season:2016,winner:'mi'},
-    {season:2017,winner:'mi'},
-    {season:2008,winner:'chk'},
-    ];
-    console.log(matchesWonPerYear(sample));
-
 
