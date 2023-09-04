@@ -11,6 +11,7 @@ function matchesWonPerTeamPerYear(matches,deliveries) {
             }
             else {
                 result[match.season] = {};
+                result[match.season][match.winner] = 1;
             }
 
 
