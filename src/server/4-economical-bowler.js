@@ -43,7 +43,7 @@ function topEconomicalBowlers(matches, deliveries) {
     for(let i=0;i<10;i++){
         result.push({
             bowler:sortedBowlerEconomy[i][0],
-            Economy:sortedBowlerEconomy[i][1]
+            Economy:sortedBowlerEconomy[i][1]*6
         })
     }
 

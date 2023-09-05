@@ -35,15 +35,15 @@ const matchSample = [
 
   test('top 10 economical bowlers working fine', () => {
     expect(topEconomyBowlers(matchSample,deliverySample)).toMatchObject([
-        { bowler: 'thakur', Economy: 1 },
-        { bowler: 'ishant', Economy: 1.6666666666666667 },
-        { bowler: 'umesh', Economy: 2 },
-        { bowler: 'ishan', Economy: 2 },
-        { bowler: 'kumar', Economy: 2.6666666666666665 },
-        { bowler: 'suresh', Economy: 3 },
-        { bowler: 'shami', Economy: 3 },
-        { bowler: 'nehra', Economy: 4 },
-        { bowler: 'starc', Economy: 4 },
-        { bowler: 'ashwin', Economy: 4 }
-      ]);
+      { bowler: 'thakur', Economy: 6 },
+      { bowler: 'ishant', Economy: 10 },
+      { bowler: 'umesh', Economy: 12 },
+      { bowler: 'ishan', Economy: 12 },
+      { bowler: 'kumar', Economy: 16 },
+      { bowler: 'suresh', Economy: 18 },
+      { bowler: 'shami', Economy: 18 },
+      { bowler: 'nehra', Economy: 24 },
+      { bowler: 'starc', Economy: 24 },
+      { bowler: 'ashwin', Economy: 24 }
+    ]);
   });
