@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function createJson(jsonData,fileName){
-    const filePath = "./src/public/output/"+fileName;
+    const filePath = "./public/output/"+fileName;
 
     const data = JSON.stringify(jsonData);
 
