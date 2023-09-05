@@ -23,7 +23,7 @@ const sample = [
     },
 ]
 
-test('match per year working fine', () => {
+test('team win matches and toss working fine', () => {
     expect(teamWinMatchesAndToss(sample, [])).toMatchObject({
         chk: 1,
         rcb: 1,
