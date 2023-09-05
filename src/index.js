@@ -6,6 +6,7 @@ const matchesPerYear = require('./server/1-matches-per-year.js');
 const matchesWonPerYear = require('./server/2-matches-won-per-team-per-year.js');
 const extraRunsPerTeam = require('./server/3-extra-run-per-team-2016.js');
 const topEconomicalBowlers = require('./server/4-economical-bowler.js');
+const teamWinMatchesAndToss = require('./server/5-team-win-match-toss.js');
 
 
 const resolveQuery = (callback,fileName) => {
@@ -37,3 +38,7 @@ resolveQuery(extraRunsPerTeam,"3-extraRunsPerTeam.json");
 //Q4=>
 
 resolveQuery(topEconomicalBowlers,"4-top10EconomicalBowlers.json");
+
+//Q5=>
+
+resolveQuery(teamWinMatchesAndToss,'5-teamWinMatchesAndToss.json');

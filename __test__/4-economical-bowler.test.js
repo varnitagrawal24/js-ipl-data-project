@@ -33,7 +33,7 @@ const matchSample = [
     { match_id: 8, bowler: 'ishant', total_runs: '1', wide_runs: '0' },
   ];
 
-  test('match per year working fine', () => {
+  test('top 10 economical bowlers working fine', () => {
     expect(topEconomyBowlers(matchSample,deliverySample)).toMatchObject([
         { bowler: 'thakur', Economy: 1 },
         { bowler: 'ishant', Economy: 1.6666666666666667 },
