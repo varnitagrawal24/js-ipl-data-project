@@ -1,6 +1,6 @@
-const fs = require('fs');
+/* eslint-disable no-undef */
 const csv = require('csvtojson');
-const createJson = require("./server/createJsonFile.js")
+const createJson = require('./server/createJsonFile.js');
 
 const matchesPerYear = require('./server/1-matches-per-year.js');
 const matchesWonPerYear = require('./server/2-matches-won-per-team-per-year.js');
@@ -12,53 +12,57 @@ const strikeRateOfBatsman = require('./server/7-strike-rate-of-batsman.js');
 const highestPlayerDismissed = require('./server/8-highest-player-dismissed.js');
 const bestEconomyBowlerInSuperOver = require('./server/9-best-economy-super-over.js');
 
+const resolveQuery = (callback, fileName) => {
+  csv()
+    .fromFile('./data/matches.csv')
+    .then((resultMatch) => {
+      csv()
+        .fromFile('./data/deliveries.csv')
+        .then((resultDelivery) => {
+          const result = callback(resultMatch, resultDelivery);
+          createJson(result, fileName);
+        });
+    });
+};
 
-const resolveQuery = (callback,fileName) => {
-    csv()
-        .fromFile("./data/matches.csv")
-        .then((resultMatch) => {
+// Q1=>
 
-            csv()
-                .fromFile("./data/deliveries.csv")
-                .then((resultDelivery) => {
-                    const result=callback(resultMatch,resultDelivery);
-                    createJson(result,fileName);
-                })
-        })
-}
+resolveQuery(matchesPerYear, '1-matchesPerYear.json');
 
-//Q1=>
+// Q2=>
 
-resolveQuery(matchesPerYear,"1-matchesPerYear.json");
+resolveQuery(matchesWonPerYear, '2-matchesWonPerTeamPerYear.json');
 
-//Q2=>
+// Q3=>
 
-resolveQuery(matchesWonPerYear,"2-matchesWonPerTeamPerYear.json");
+resolveQuery(extraRunsPerTeam, '3-extraRunsPerTeam.json');
 
-//Q3=>
+// Q4=>
 
-resolveQuery(extraRunsPerTeam,"3-extraRunsPerTeam.json");
+resolveQuery(topEconomicalBowlers, '4-top10EconomicalBowlers.json');
 
-//Q4=>
+// Q5=>
 
-resolveQuery(topEconomicalBowlers,"4-top10EconomicalBowlers.json");
+resolveQuery(teamWinMatchesAndToss, '5-teamWinMatchesAndToss.json');
 
-//Q5=>
+// Q6=>
 
-resolveQuery(teamWinMatchesAndToss,'5-teamWinMatchesAndToss.json');
+resolveQuery(
+  highestPlayerOfMatchPerSeason,
+  '6-highestPlayerOfMatchPerSeason.json',
+);
 
-//Q6=>
+// Q7=>
 
-resolveQuery(highestPlayerOfMatchPerSeason,'6-highestPlayerOfMatchPerSeason.json')
+resolveQuery(strikeRateOfBatsman, '7-strikeRateOfBatsman.json');
 
-//Q7=>
+// Q8=>
 
-resolveQuery(strikeRateOfBatsman,'7-strikeRateOfBatsman.json');
+resolveQuery(highestPlayerDismissed, '8-highestPlayerDismissed.json');
 
-//Q8=>
+// Q9=>
 
-resolveQuery(highestPlayerDismissed,'8-highestPlayerDismissed.json');
-
-//Q9=>
-
-resolveQuery(bestEconomyBowlerInSuperOver,'9-bestEconomyBowlerInSuperOver.json');
+resolveQuery(
+  bestEconomyBowlerInSuperOver,
+  '9-bestEconomyBowlerInSuperOver.json',
+);
