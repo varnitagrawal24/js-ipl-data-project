@@ -105,8 +105,8 @@ const sample = [
 ];
 
 test('best economy in super over working fine', () => {
-  expect(bestEconomyBowlerInSuperOver([], sample)).toMatchObject({
-    player: 'thakur',
-    economy: 6,
-  });
+  expect(bestEconomyBowlerInSuperOver([], sample)).toMatchObject([
+    { economy: 6, player: 'thakur' },
+    { economy: 6, player: 'dinda' },
+  ]);
 });

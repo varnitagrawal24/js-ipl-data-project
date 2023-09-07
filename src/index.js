@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const csv = require('csvtojson');
 const createJson = require('./server/createJsonFile.js');
 

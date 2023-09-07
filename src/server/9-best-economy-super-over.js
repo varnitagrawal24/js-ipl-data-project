@@ -1,6 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable eqeqeq */
-function bestEconomyBowlerInSuperOver(matches, deliveries) {
+function bestEconomyBowlerInSuperOver(_matches, deliveries) {
   const superOverDelivery = deliveries.filter((delivery) => {
     return delivery.is_super_over == '1';
   });
@@ -34,10 +32,19 @@ function bestEconomyBowlerInSuperOver(matches, deliveries) {
     },
   );
 
-  const result = {
-    player: sortedBowlerEconomy[0][0],
-    economy: sortedBowlerEconomy[0][1],
-  };
+  const temp = sortedBowlerEconomy[0][1];
+  let result = [];
+
+  for (let item of sortedBowlerEconomy) {
+    if (item[1] === temp) {
+      result.push({
+        player: item[0],
+        economy: item[1],
+      });
+    } else {
+      break;
+    }
+  }
 
   return result;
 }

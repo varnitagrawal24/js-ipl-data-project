@@ -1,7 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable eqeqeq */
-function highestPlayerOfMatchPerSeason(matches, deliveries) {
+function highestPlayerOfMatchPerSeason(matches, _deliveries) {
   const result = [];
   const seasons = matches.reduce((acc, match) => {
     if (!acc.includes(match.season)) {
@@ -30,9 +27,20 @@ function highestPlayerOfMatchPerSeason(matches, deliveries) {
       },
     );
 
+    const temp = sorted[0][1];
+    let player = [];
+
+    for (let item of sorted) {
+      if (item[1] === temp) {
+        player.push(item[0]);
+      } else {
+        break;
+      }
+    }
+
     result.push({
       season,
-      player: sorted[0][0],
+      player,
     });
   });
 

@@ -2,30 +2,30 @@
 const highestPlayerDismissed = require('../src/server/8-highest-player-dismissed.js');
 
 const sample = [
-  { player_dismissed: 'kumar' },
-  { player_dismissed: 'umesh' },
-  { player_dismissed: 'ishant' },
-  { player_dismissed: 'umesh' },
-  { player_dismissed: 'starc' },
-  { player_dismissed: 'kumar' },
-  { player_dismissed: 'ashwin' },
-  { player_dismissed: 'jadeja' },
-  { player_dismissed: 'thakur' },
-  { player_dismissed: 'ishan' },
-  { player_dismissed: 'kumar' },
-  { player_dismissed: 'shami' },
-  { player_dismissed: 'umesh' },
-  { player_dismissed: 'ishant' },
-  { player_dismissed: 'umesh' },
-  { player_dismissed: 'kumar' },
-  { player_dismissed: 'shami' },
-  { player_dismissed: 'umesh' },
-  { player_dismissed: 'ishant' },
+  { player_dismissed: 'kumar', bowler: 'bumra' },
+  { player_dismissed: 'umesh', bowler: 'shami' },
+  { player_dismissed: 'ishant', bowler: 'pandya' },
+  { player_dismissed: 'umesh', bowler: 'ashwin' },
+  { player_dismissed: 'starc', bowler: 'bumra' },
+  { player_dismissed: 'kumar', bowler: 'ashwin' },
+  { player_dismissed: 'ashwin', bowler: 'shami' },
+  { player_dismissed: 'jadeja', bowler: 'pandya' },
+  { player_dismissed: 'thakur', bowler: 'shami' },
+  { player_dismissed: 'ishan', bowler: 'ashwin' },
+  { player_dismissed: 'kumar', bowler: 'shami' },
+  { player_dismissed: 'shami', bowler: 'pandya' },
+  { player_dismissed: 'umesh', bowler: 'bumra' },
+  { player_dismissed: 'ishant', bowler: 'ashwin' },
+  { player_dismissed: 'umesh', bowler: 'pandya' },
+  { player_dismissed: 'kumar', bowler: 'shami' },
+  { player_dismissed: 'shami', bowler: 'ashwin' },
+  { player_dismissed: 'umesh', bowler: 'bumra' },
+  { player_dismissed: 'ishant', bowler: 'bumra' },
 ];
 
 test('highest player of dimissed working fine', () => {
-  expect(highestPlayerDismissed([], sample)).toMatchObject({
-    player: 'umesh',
-    number_of_dismissed: 5,
-  });
+  expect(highestPlayerDismissed([], sample)).toMatchObject([
+    { bowler: 'shami', number_of_dismissed: 2, player_dismissed: 'kumar' },
+    { bowler: 'bumra', number_of_dismissed: 2, player_dismissed: 'umesh' },
+  ]);
 });

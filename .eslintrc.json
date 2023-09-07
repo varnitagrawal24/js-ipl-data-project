@@ -1,7 +1,21 @@
 {
     "env": {
         "browser": true,
+        "commonjs": true,
         "es2021": true
     },
-    "extends": ["eslint:recommended"]
+    "extends": [
+        "eslint:recommended"
+    ],
+    "rules": {
+        "no-unused-vars": [
+        "error",
+        {
+            "ignoreRestSiblings": true,
+            "destructuredArrayIgnorePattern": "[A-Z]",
+            "caughtErrors": "none",
+            "argsIgnorePattern": "^_"
+        }
+    ]
+    }
 }

@@ -1,6 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-function matchesWonPerTeamPerYear(matches, deliveries) {
+function matchesWonPerTeamPerYear(matches,_deliveries) {
   const result = {};
   for (const match of matches) {
     if (result[match.season] && result[match.season][match.winner]) {

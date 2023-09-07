@@ -25,9 +25,9 @@ const sample = [
 
 test('highest player of match in a season working fine', () => {
   expect(highestPlayerOfMatchPerSeason(sample, [])).toMatchObject([
-    { season: '2001', player: 'ramesh' },
-    { season: '2002', player: 'sonu' },
-    { season: '2003', player: 'suresh' },
-    { season: '2004', player: 'ramesh' },
+    { season: '2001', player: ['ramesh'] },
+    { season: '2002', player: ['sonu'] },
+    { season: '2003', player: ['suresh','sonu'] },
+    { season: '2004', player: ['ramesh','mahesh'] },
   ]);
 });

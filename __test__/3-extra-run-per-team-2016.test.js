@@ -53,7 +53,7 @@ const deliverySample = [
   },
 ];
 
-test('match per year working fine', () => {
+test('extra run per team working fine', () => {
   expect(extraRunsPerTeam(matchSample, deliverySample)).toMatchObject({
     chk: 2,
     mi: 0,

@@ -1,20 +1,17 @@
-/* eslint-disable no-undef */
-/* eslint-disable eqeqeq */
-/* eslint-disable camelcase */
 function topEconomicalBowlers(matches, deliveries) {
-  const matchID_2015 = matches
+  const matchId2015 = matches
     .filter((match) => {
-      return match.season == 2015;
+      return Number(match.season) == 2015;
     })
     .map((match) => {
       return match.id;
     });
 
-  const delivery_2015 = deliveries.filter((delivery) => {
-    return matchID_2015.includes(delivery.match_id);
+  const delivery2015 = deliveries.filter((delivery) => {
+    return matchId2015.includes(delivery.match_id);
   });
 
-  const bowlerRuns = delivery_2015.reduce((acc, delivery) => {
+  const bowlerRuns = delivery2015.reduce((acc, delivery) => {
     if (acc[delivery.bowler]) {
       acc[delivery.bowler] += Number(delivery.total_runs);
     } else {
@@ -23,7 +20,7 @@ function topEconomicalBowlers(matches, deliveries) {
     return acc;
   }, {});
 
-  const bowlerDelivery = delivery_2015.reduce((acc, delivery) => {
+  const bowlerDelivery = delivery2015.reduce((acc, delivery) => {
     if (acc[delivery.bowler]) {
       acc[delivery.bowler] += 1;
     } else {

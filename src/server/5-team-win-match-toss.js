@@ -1,7 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
-/* eslint-disable eqeqeq */
-function teamWinMatchesAndToss(matches, deliveries) {
+function teamWinMatchesAndToss(matches, _deliveries) {
   const matchWin = matches.filter((match) => {
     return match.winner == match.toss_winner;
   });

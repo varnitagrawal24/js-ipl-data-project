@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable eqeqeq */
 function strikeRateOfBatsman(matches, deliveries) {
   const result = {};
   const seasons = matches.reduce((acc, match) => {
