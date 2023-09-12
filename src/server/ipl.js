@@ -360,3 +360,57 @@ const chart8= async ()=>{
     });
 }
 chart8();
+
+const chart9= async ()=>{
+    const res=await fetch("http://localhost:3000/data/9");
+    const data=await res.json();
+
+    const columnName=data.map((item)=>{
+        return item.player;
+    });
+    const columnData=data.map((item)=>{
+        return item.economy;
+    });
+
+
+    Highcharts.chart('chart-9', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'The bowler with the best economy in super overs'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true,
+            title: {
+                text: 'Player'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Economy in super over'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Economy',
+            data: columnData
+        }]
+    });
+}
+chart9();
