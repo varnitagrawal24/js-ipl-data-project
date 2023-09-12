@@ -159,3 +159,55 @@ const chart3= async ()=>{
     });
 }
 chart3();
+
+const chart4= async ()=>{
+    const res=await fetch("http://localhost:3000/data/4");
+    const data=await res.json();
+
+    const columnName=data.map((item)=>{
+        return item.bowler;
+    });
+    const columnData=data.map((item)=>{
+
+        return (item.Economy);
+    });
+
+
+    Highcharts.chart('chart-4', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Top 10 economical bowlers in the year 2015'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Economy'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Economy of a player',
+            data: columnData
+        }]
+    });
+}
+chart4();
