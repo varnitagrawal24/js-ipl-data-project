@@ -258,3 +258,51 @@ const chart5= async ()=>{
     });
 }
 chart5();
+
+const chart6= async ()=>{
+    const res=await fetch("http://localhost:3000/data/6");
+    const data=await res.json();
+    
+
+    var chartData = data.map(function(entry) {
+        return {
+            name: entry.season,
+            y: entry.player.length,
+            players: entry.player.join(", ") 
+        };
+    });
+
+    // Create the Highcharts chart
+    Highcharts.chart('chart-6', {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Players who has won the highest number of Player of the Match awards for each season'
+        },
+        xAxis: {
+            type: 'category',
+            title: {
+                text: 'Season'
+            }
+        },
+        yAxis: {
+            title: {
+                text: 'Number of Players'
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.players}'
+                }
+            }
+        },
+        series: [{
+            name: 'Players',
+            data: chartData
+        }]
+    });
+}
+chart6();
