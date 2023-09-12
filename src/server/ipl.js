@@ -1,0 +1,114 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+
+const chart1= async ()=>{
+    const res=await fetch("http://localhost:3000/data/1");
+    const data=await res.json();
+
+    const columnName=Object.keys(data);
+    const columnData=Object.values(data);
+
+    Highcharts.chart('chart-1', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Number of matches played per year for all the years'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Matches played per year'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Matches',
+            data: columnData
+    
+        }]
+    });
+}
+chart1();
+
+const chart2= async ()=>{
+    const res=await fetch("http://localhost:3000/data/2");
+    const data=await res.json();
+
+    const columnName=Object.keys(data);
+    const teams=new Set();
+    const dataValue=Object.values(data);
+    dataValue.forEach((item)=>{
+        Object.keys(item).forEach((team)=>{
+            if(team) teams.add(team);
+        })
+    });
+    const columnData=[...teams].reduce((acc,team)=>{
+        const teamData=[];
+        dataValue.forEach((item)=>{
+            if(item[team]){
+                teamData.push(item[team]);
+            }else{
+                teamData.push(0);
+            }
+        })
+        acc.push({
+            name:team,
+            data:teamData
+        })
+        return acc;
+    },[])
+
+
+    Highcharts.chart('chart-2', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Number of matches won per team per year'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Matches won'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: columnData
+    });
+}
+chart2();

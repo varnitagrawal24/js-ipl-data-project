@@ -13,7 +13,9 @@ const readFile=(filePath,cb)=>{
 
 const server=http.createServer((req,res)=>{
     if(req.url==="/"){
-        res.end("<h1>HOME</h1>")
+        readFile("./public/index.html",(data)=>{
+            res.end(data);
+        })
     }else if(req.url==="/data/1"){
         readFile("./public/output/1-matchesPerYear.json",(data)=>{
             res.end(data);
@@ -50,6 +52,8 @@ const server=http.createServer((req,res)=>{
         readFile("./public/output/9-bestEconomyBowlerInSuperOver.json",(data)=>{
             res.end(data);
         })
+    }else{
+        fs.createReadStream("./server/ipl.js").pipe(res);
     }
 })
 
