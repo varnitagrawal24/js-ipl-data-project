@@ -306,3 +306,57 @@ const chart6= async ()=>{
     });
 }
 chart6();
+
+const chart8= async ()=>{
+    const res=await fetch("http://localhost:3000/data/8");
+    const data=await res.json();
+
+    const columnName=data.map((item)=>{
+        return `${item.player_dismissed}-${item.bowler}`;
+    });
+    const columnData=data.map((item)=>{
+        return item.number_of_dismissed;
+    });
+
+
+    Highcharts.chart('chart-8', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'The highest number of times one player has been dismissed by another player'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true,
+            title: {
+                text: 'Pair'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Number of dismissial'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Number of dismissial by pair',
+            data: columnData
+        }]
+    });
+}
+chart8();
