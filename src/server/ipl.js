@@ -211,3 +211,50 @@ const chart4= async ()=>{
     });
 }
 chart4();
+
+const chart5= async ()=>{
+    const res=await fetch("http://localhost:3000/data/5");
+    const data=await res.json();
+
+    const columnName=Object.keys(data);
+    const columnData=Object.values(data);
+
+
+    Highcharts.chart('chart-5', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'The number of times each team won the toss and also won the match'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Match & Toss Win'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Number of matches & toss win',
+            data: columnData
+        }]
+    });
+}
+chart5();
