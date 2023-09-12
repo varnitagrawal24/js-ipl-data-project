@@ -22,7 +22,7 @@ const chart1= async ()=>{
         yAxis: {
             min: 0,
             title: {
-                text: 'Matches played per year'
+                text: 'Total Matches'
             }
         },
         tooltip: {
@@ -40,7 +40,7 @@ const chart1= async ()=>{
             }
         },
         series: [{
-            name: 'Matches',
+            name: 'Matches played per year',
             data: columnData
     
         }]
@@ -91,7 +91,7 @@ const chart2= async ()=>{
         yAxis: {
             min: 0,
             title: {
-                text: 'Matches won'
+                text: 'Matches won per year'
             }
         },
         tooltip: {
@@ -112,3 +112,50 @@ const chart2= async ()=>{
     });
 }
 chart2();
+
+const chart3= async ()=>{
+    const res=await fetch("http://localhost:3000/data/3");
+    const data=await res.json();
+
+    const columnName=Object.keys(data);
+    const columnData=Object.values(data);
+
+    Highcharts.chart('chart-3', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Extra runs conceded per team in the year 2016'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Extra runs'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Extra Runs per team',
+            data: columnData
+    
+        }]
+    });
+}
+chart3();
