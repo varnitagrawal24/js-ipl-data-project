@@ -307,6 +307,134 @@ const chart6= async ()=>{
 }
 chart6();
 
+
+const chart7= async ()=>{
+    const res=await fetch("http://localhost:3000/data/7");
+    const data=await res.json();
+
+
+    const columnName=Object.keys(data);
+
+    const dataValue=Object.values(data);
+
+    const playerNames=dataValue.reduce((acc,yearWisePlayerData)=>{
+        yearWisePlayerData.forEach((item)=>{
+            if(!acc.includes(item.player)){
+                acc.push(item.player);
+            }
+        })
+        return acc;
+    },[])
+
+    const playersData={};
+
+    playerNames.forEach((name)=>{
+        playersData[name]=[];
+    })
+
+    let yearCount=0;
+    dataValue.forEach((yearWisePlayerData)=>{
+        yearCount++;
+        yearWisePlayerData.forEach((item)=>{
+            playersData[item.player].push(item.strike_rate)
+        })
+        playerNames.forEach((name)=>{
+            if(playersData[name].length!==yearCount){
+                playersData[name].push(0);
+            }
+        })
+    })
+    
+    const dropDown=document.querySelector(".drop-down");
+    playerNames.forEach((name)=>{
+        dropDown.innerHTML+=`<option value="${name}">${name}</option>`
+    })
+
+    dropDown.addEventListener("change",()=>{
+        Highcharts.chart('chart-7', {
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'The strike rate of a batsman for each season'
+            },
+            xAxis: {
+                categories: columnName,
+                crosshair: true,
+                title: {
+                    text: 'Sessions'
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Strike Rate'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: dropDown.value,
+                data: playersData[dropDown.value]
+            }]
+        });
+    })
+
+
+    Highcharts.chart('chart-7', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'The strike rate of a batsman for each season'
+        },
+        xAxis: {
+            categories: columnName,
+            crosshair: true,
+            title: {
+                text: 'Sessions'
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Strike Rate'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: dropDown.value,
+            data: playersData[dropDown.value]
+        }]
+    });
+}
+chart7();
+
 const chart8= async ()=>{
     const res=await fetch("http://localhost:3000/data/8");
     const data=await res.json();
