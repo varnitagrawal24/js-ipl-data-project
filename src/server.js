@@ -13,47 +13,47 @@ const readFile=(filePath,cb)=>{
 
 const server=http.createServer((req,res)=>{
     if(req.url==="/"){
-        readFile("./public/index.html",(data)=>{
+        readFile("./src/public/index.html",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/1"){
-        readFile("./public/output/1-matchesPerYear.json",(data)=>{
+        readFile("./src/public/output/1-matchesPerYear.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/2"){
-        readFile("./public/output/2-matchesWonPerTeamPerYear.json",(data)=>{
+        readFile("./src/public/output/2-matchesWonPerTeamPerYear.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/3"){
-        readFile("./public/output/3-extraRunsPerTeam.json",(data)=>{
+        readFile("./src/public/output/3-extraRunsPerTeam.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/4"){
-        readFile("./public/output/4-top10EconomicalBowlers.json",(data)=>{
+        readFile("./src/public/output/4-top10EconomicalBowlers.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/5"){
-        readFile("./public/output/5-teamWinMatchesAndToss.json",(data)=>{
+        readFile("./src/public/output/5-teamWinMatchesAndToss.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/6"){
-        readFile("./public/output/6-highestPlayerOfMatchPerSeason.json",(data)=>{
+        readFile("./src/public/output/6-highestPlayerOfMatchPerSeason.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/7"){
-        readFile("./public/output/7-strikeRateOfBatsman.json",(data)=>{
+        readFile("./src/public/output/7-strikeRateOfBatsman.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/8"){
-        readFile("./public/output/8-highestPlayerDismissed.json",(data)=>{
+        readFile("./src/public/output/8-highestPlayerDismissed.json",(data)=>{
             res.end(data);
         })
     }else if(req.url==="/data/9"){
-        readFile("./public/output/9-bestEconomyBowlerInSuperOver.json",(data)=>{
+        readFile("./src/public/output/9-bestEconomyBowlerInSuperOver.json",(data)=>{
             res.end(data);
         })
     }else{
-        fs.createReadStream("./server/ipl.js").pipe(res);
+        fs.createReadStream("./src/server/ipl.js").pipe(res);
     }
 })
 
